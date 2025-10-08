@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Program | Veknova</title>
+    <!-- Load Tailwind CSS for the main content -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons for stylish domain icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/internships.css">
+</head>
+<body>
+
+    <!-- Header Section (Your Original Template) -->
+    <header class="header">
+        <div class="container">
+           <a href="index.html" class="logo">
+                <!-- Replace this placeholder with your actual logo file -->
+                <img src="images/veknovalogo1.png" alt="Veknova Logo" class="logo-img">
+            </a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="Projects.html">Projects</a></li>
+                    <li><a href="Internships.html" class="active">Internships</a></li>
+                    <li><a href="ourteam.html">Our Team</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-nav-toggle" aria-controls="nav-list" aria-expanded="false">
+                <span class="sr-only">Menu</span>
+                <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6H20M4 12H20M4 18H20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content (Modern Tailwind Template) -->
+    <main class="tailwind-content">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 pt-20">
+
+            <!-- Description Section -->
+            <section class="text-center mb-16 max-w-4xl mx-auto">
+                <p class="text-gray-700 text-lg sm:text-xl leading-relaxed">
+                    Join Veknova and power your career with hands-on experience in cutting-edge technology domains. We are seeking passionate innovators ready to build the future.
+                </p>
+            </section>
+
+            <!-- Domain Sections (Cards) -->
+            <section class="mb-20">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">Explore Our Domains</h2>
+                
+                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
+                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-[1.03] border-t-4 border-indigo-500 cursor-pointer">
+                        <div class="flex flex-col items-center justify-center h-full">
+                            <i data-lucide="code" class="w-10 h-10 text-indigo-500 mb-4"></i>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Web Development</h3>
+                            <p class="text-sm text-gray-500 text-center">Full-stack projects using modern frameworks.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-[1.03] border-t-4 border-pink-500 cursor-pointer">
+                        <div class="flex flex-col items-center justify-center h-full">
+                            <i data-lucide="smartphone" class="w-10 h-10 text-pink-500 mb-4"></i>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">App Development</h3>
+                            <p class="text-sm text-gray-500 text-center">Building native and cross-platform mobile solutions.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-[1.03] border-t-4 border-green-500 cursor-pointer">
+                        <div class="flex flex-col items-center justify-center h-full">
+                            <i data-lucide="brain" class="w-10 h-10 text-green-500 mb-4"></i>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">AI & ML</h3>
+                            <p class="text-sm text-gray-500 text-center">Deep learning models and predictive analytics.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-[1.03] border-t-4 border-red-500 cursor-pointer">
+                        <div class="flex flex-col items-center justify-center h-full">
+                            <i data-lucide="shield-check" class="w-10 h-10 text-red-500 mb-4"></i>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Cyber Security</h3>
+                            <p class="text-sm text-gray-500 text-center">Threat analysis, penetration testing, and defense.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-[1.03] border-t-4 border-yellow-500 cursor-pointer">
+                        <div class="flex flex-col items-center justify-center h-full">
+                            <i data-lucide="radio" class="w-10 h-10 text-yellow-500 mb-4"></i>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">IoT Projects</h3>
+                            <p class="text-sm text-gray-500 text-center">Embedded systems and connected device platforms.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action (CTA) Button -->
+            <section class="text-center py-10">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8MuceObfINzhkycR0xPUItOAbodH2pgFY_Tq5JSvJyCYgAA/viewform?usp=header" target="_blank" class="gradient-button inline-block text-white font-bold py-4 px-12 text-lg sm:text-xl rounded-full tracking-wider uppercase focus:outline-none focus:ring-4 focus:ring-indigo-300 transition duration-300">
+                    Click Here for Registration
+                </a>
+                <p class="mt-4 text-sm text-gray-500">
+                    Application deadline is fast approaching. Secure your spot now!
+                </p>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer Section (Your Original Template) -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Veknova Pvt. Ltd. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Script for your original mobile menu -->
+    <script src="js/main.js"></script>
+    <!-- Script to initialize Lucide icons for the Tailwind content -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
+

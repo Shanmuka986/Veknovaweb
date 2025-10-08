@@ -1,0 +1,266 @@
+/* * STYLE GUIDE:
+ * 1. Globals & Variables  - Base styles and color palette.
+ * 2. Layout & Container   - Core page structure.
+ * 3. Header & Navigation  - Top bar and menu (Mobile First).
+ * 4. Page-Specific Styles - Unique content sections for this page.
+ * 5. Footer               - Bottom section.
+ * 6. Utility Classes      - Reusable helpers (e.g., buttons).
+ * 7. Media Queries        - Responsive adjustments for larger screens.
+*/
+
+/* 1. Globals & Variables */
+:root {
+    --primary-color: #0a4d8c; /* A deep, professional blue */
+    --secondary-color: #f4f7fa; /* A light, clean background grey */
+    --accent-color: #007bff; /* A brighter blue for links and highlights */
+    --text-dark: #212529;
+    --text-light: #ffffff;
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --container-width: 1140px;
+    --border-radius: 8px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.7;
+    color: var(--text-dark);
+    background-color: var(--text-light);
+}
+
+h1, h2, h3 {
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+a { color: var(--accent-color); text-decoration: none; }
+
+/* 2. Layout & Container */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.section {
+    padding: 5rem 0;
+}
+
+/* 3. Header & Navigation (Mobile First) - STANDARDIZED */
+.header {
+    background: var(--text-light);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.logo-img {
+    height: 45px; /* Adjust height as needed */
+    width: auto;
+}
+
+.nav-list {
+    list-style: none;
+    display: none; /* Hidden on mobile */
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--text-light);
+    border-top: 1px solid #ddd;
+    padding: 1rem 0;
+}
+
+.nav-list.active {
+    display: flex; /* Shown when toggled by JS */
+}
+
+.nav-list a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    text-align: center;
+    transition: color 0.2s ease-in-out;
+}
+
+.nav-list a.active, .nav-list a:hover {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.mobile-nav-toggle {
+    display: block; /* Shown on mobile */
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.hamburger-icon {
+    width: 24px;
+    height: 24px;
+    stroke: var(--text-dark);
+}
+
+/* 4. Page-Specific Styles */
+.section-page-header {
+    background-color: var(--secondary-color);
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.section-contact-details {
+    background-color: var(--secondary-color);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.contact-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    background: var(--text-light);
+    padding: 2rem;
+    border: 1px solid #e9ecef;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.contact-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.contact-card-header svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--primary-color);
+}
+
+.contact-card-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
+
+.contact-card-content p {
+    font-size: 0.95rem;
+    color: #495057;
+    margin-left: calc(24px + 0.75rem);
+    margin-bottom: 0.25rem;
+}
+
+.contact-card-content span {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-left: calc(24px + 0.75rem);
+}
+
+.contact-card-action {
+    margin-left: auto;
+    padding-left: 1rem;
+}
+
+/* 5. Footer */
+.footer {
+    background: var(--text-dark);
+    color: var(--text-light);
+    text-align: center;
+    padding: 3rem 0;
+}
+
+.footer p {
+    margin: 0;
+}
+
+/* 6. Utility Classes */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+.btn-outline {
+    background: transparent;
+    border-color: #ced4da;
+    color: var(--text-dark);
+}
+
+.btn-outline:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--text-light);
+}
+
+.sr-only { 
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; 
+    overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; 
+}
+
+/* 7. Media Queries (Desktop Adjustments) */
+@media (min-width: 768px) {
+    h1 { font-size: 3.2rem; }
+
+    .mobile-nav-toggle {
+        display: none;
+    }
+
+    .nav-list {
+        display: flex;
+        flex-direction: row;
+        position: static;
+        width: auto;
+        background: none;
+        border: none;
+        padding: 0;
+    }
+
+    .nav-list a {
+        padding: 0 1.25rem;
+    }
+    
+    .contact-card {
+        flex-wrap: nowrap;
+    }
+}
+

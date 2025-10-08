@@ -1,0 +1,308 @@
+/* * STYLE GUIDE:
+ * 1. Globals & Variables  - Base styles and color palette.
+ * 2. Layout & Container   - Core page structure.
+ * 3. Header & Navigation  - Top bar and menu (Mobile First).
+ * 4. Main Content Sections- Hero, Features, Call to Action.
+ * 5. Page-Specific Styles - Headers and unique content sections.
+ * 6. Footer               - Bottom section.
+ * 7. Utility Classes      - Reusable helpers (e.g., buttons).
+ * 8. Media Queries        - Responsive adjustments for larger screens.
+*/
+
+/* 1. Globals & Variables */
+:root {
+    --primary-color: #0a4d8c; /* A deep, professional blue */
+    --secondary-color: #f4f7fa; /* A light, clean background grey */
+    --accent-color: #007bff; /* A brighter blue for links and highlights */
+    --text-dark: #212529;
+    --text-light: #ffffff;
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --container-width: 1140px;
+    --border-radius: 6px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+ .logo-img {
+            height: 45px; /* Adjust height as needed */
+            width: auto;
+        }
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.7;
+    color: var(--text-dark);
+    background-color: var(--text-light);
+}
+
+h1, h2, h3 {
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+p { margin-bottom: 1rem; }
+a { color: var(--accent-color); text-decoration: none; }
+
+/* 2. Layout & Container */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* 3. Header & Navigation (Mobile First) */
+.header {
+    background: var(--text-light);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.nav-list {
+    list-style: none;
+    display: none; /* Hidden on mobile */
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--text-light);
+    border-top: 1px solid #ddd;
+    padding: 1rem 0;
+}
+
+.nav-list.active {
+    display: flex; /* Shown when toggled by JS */
+}
+
+.nav-list a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    text-align: center;
+    transition: color 0.2s ease-in-out;
+}
+
+.nav-list a.active, .nav-list a:hover {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.mobile-nav-toggle {
+    display: block; /* Shown on mobile */
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.hamburger-icon {
+    width: 24px;
+    height: 24px;
+    stroke: var(--text-dark);
+}
+
+/* 4. Main Content Sections */
+.section {
+    padding: 5rem 0;
+}
+
+.section-hero {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    text-align: center;
+    padding: 6rem 0;
+}
+
+.section-hero h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+}
+.section-hero p {
+    font-size: 1.15rem;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.9;
+}
+
+.section-features {
+    background-color: var(--secondary-color);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.features-grid {
+    display: grid;
+    gap: 2rem;
+}
+
+.feature-card {
+    background: var(--text-light);
+    border: 1px solid #e0e0e0;
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.feature-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.section-cta {
+    background-color: var(--text-light);
+    text-align: center;
+}
+
+.section-cta p {
+    max-width: 600px;
+    margin: 0 auto 1.5rem auto;
+}
+
+/* 5. Page-Specific Styles */
+.section-page-header {
+    background-color: var(--secondary-color);
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.content-container {
+    max-width: 800px;
+}
+
+.contact-container {
+    max-width: 700px;
+}
+
+.contact-form .form-group {
+    margin-bottom: 1.5rem;
+}
+.contact-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    font-family: inherit;
+    font-size: 1rem;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(10, 77, 140, 0.2);
+}
+
+/* 6. Footer */
+.footer {
+    background: var(--text-dark);
+    color: var(--text-light);
+    text-align: center;
+    padding: 3rem 0;
+}
+
+.footer p {
+    margin: 0;
+}
+
+/* 7. Utility Classes */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    font-weight: 700;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-primary {
+    background: var(--text-light);
+    color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.btn-secondary {
+    background: var(--accent-color);
+    color: var(--text-light);
+}
+
+.btn-secondary:hover {
+    background-color: #0069d9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.sr-only { 
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; 
+    overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; 
+}
+
+/* 8. Media Queries (Desktop Adjustments) */
+@media (min-width: 768px) {
+    h1 { font-size: 3.2rem; }
+    .section-hero h1 { font-size: 3.8rem; }
+
+    .mobile-nav-toggle {
+        display: none; /* Hide hamburger on desktop */
+    }
+
+    .nav-list {
+        display: flex;
+        flex-direction: row;
+        position: static;
+        width: auto;
+        background: none;
+        border: none;
+        padding: 0;
+    }
+
+    .nav-list a {
+        padding: 0 1.25rem;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
+    }
+}
