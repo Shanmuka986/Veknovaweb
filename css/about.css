@@ -2,7 +2,7 @@
  * 1. Globals & Variables  - Base styles and color palette.
  * 2. Layout & Container   - Core page structure.
  * 3. Header & Navigation  - Top bar and menu (Mobile First).
- * 4. Page-Specific Styles - Unique content sections for the About Us page.
+ * 4. Page-Specific Styles - Styles for the About Us page content.
  * 5. Footer               - Bottom section.
  * 6. Utility Classes      - Reusable helpers (e.g., buttons).
  * 7. Media Queries        - Responsive adjustments for larger screens.
@@ -128,13 +128,24 @@ a { color: var(--accent-color); text-decoration: none; }
     padding: 4rem 0;
 }
 
-.content-container {
-    max-width: 800px; /* Restricts the width of the text for better readability */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Default to 1 column for mobile */
+    gap: 2.5rem;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
-.content-container h2 {
+.about-card {
+    background-color: var(--secondary-color);
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    border-left: 5px solid var(--primary-color);
+}
+
+.about-card h2 {
     color: var(--primary-color);
+    margin-bottom: 1rem;
 }
 
 /* 5. Footer */
@@ -176,4 +187,9 @@ a { color: var(--accent-color); text-decoration: none; }
     .nav-list a {
         padding: 0 1.25rem;
     }
+
+    .about-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for desktop */
+    }
 }
+
