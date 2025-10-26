@@ -4,94 +4,272 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veknova pvt ltd</title>
-    <!-- Link to the shared stylesheet -->
     <link rel="stylesheet" href="css/index.css">
-     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/launch.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Basic styles for the ribbon animation elements */
+        /* We use tailwind, but some transitions are easier here */
+        #scissors {
+            transition-property: transform, opacity;
+            transition-duration: 500ms;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        #ribbon-left, #ribbon-right {
+            transition-property: transform, opacity;
+            transition-duration: 1000ms;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
 </head>
-<body>
+<body class="bg-white">
 
-    <!-- Header Section (Consistent across all pages) -->
-    <header class="header">
-        <div class="container">
-            <a href="index.html" class="logo">
-                <!-- Replace this placeholder with your actual logo file -->
-                <img src="images/veknovalogo1.png" alt="Veknova Logo" class="logo-img">
-            </a>
-            <nav class="nav">
-                <ul class="nav-list">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="Projects.html">Projects</a></li>
-                    <li><a href="Internships.html">Internships</a></li>
-                    <li><a href="ourteam.html">Our Team</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                </ul>
-            </nav>
-            <button class="mobile-nav-toggle" aria-controls="nav-list" aria-expanded="false">
-                <span class="sr-only">Menu</span>
-                <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6H20M4 12H20M4 18H20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-        </div>
-    </header>
-
-    <main>
-        <!-- Hero Section -->
-        <section class="section section-hero">
-            <div class="container">
-                <h1>Crafting Digital Excellence</h1>
-                <p>Pioneering next-generation technology, we transform ambitious concepts into robust and impactful real-world solutions.</p>
-                <a href="Projects.html" class="btn btn-primary">Discover Our Projects</a>
+    <section id="launch-overlay" class="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-md flex items-center justify-center z-50 transition-opacity duration-1000 ease-in-out">
+        <div id="launch-modal" class="bg-white p-8 md:p-16 rounded-2xl shadow-2xl text-center flex flex-col items-center min-w-[300px]">
+            
+            <div id="step-1-prompt">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Launch Website</h2>
+                <button id="launch-button" class="px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg text-xl shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105">
+                    Launch
+                </button>
             </div>
-        </section>
 
-        <!-- Features Section -->
-        <section class="section section-features">
-            <div class="container">
-                <div class="section-title">
-                    <h2>What We Deliver</h2>
-                    <p>Our core focus is on quality, performance, and user-centric design.</p>
+            <div id="step-2-countdown" class="hidden">
+                <div id="countdown-timer" class="text-8xl md:text-9xl font-bold text-blue-600" style="font-variant-numeric: tabular-nums;">10</div>
+            </div>
+
+            <div id="step-3-animation" class="hidden relative w-64 h-32 flex items-center justify-center overflow-hidden">
+                <div class="absolute w-full h-8 bg-red-600 rounded">
+                    <div id="ribbon-left" class="absolute left-0 top-0 h-8 bg-red-600 w-1/2"></div>
+                    <div id="ribbon-right" class="absolute right-0 top-0 h-8 bg-red-600 w-1/2"></div>
                 </div>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <h3>Drone Based Garbage Detection</h3>
-                        <p>An ongoing project to develop an AI-powered drone system that autonomously identifies and maps garbage accumulation in urban and rural areas.</p>
-                    </div>
+                
+                <div id="scissors" class="absolute text-7xl text-gray-600" style="transform: translateY(60px) rotate(90deg) scale(0.5); opacity: 0;">
+                    &#x2702; </div>
+            </div>
+        </div>
+    </section>
 
-                  
-                    <div class="feature-card">
-                        <h3>Traveler's Safety & Monitoring</h3>
-                        <p>We are building an integrated platform using Emergency SOS Alert Features and  mobile technology to provide real-time safety alerts and emergency assistance for travelers.</p>
+    <div id="main-content" class="opacity-0 transition-opacity duration-1000">
+
+        <header class="header">
+            <div class="container">
+                <a href="index.html" class="logo">
+                    <img src="images/veknovalogo1.png" alt="Veknova Logo" class="logo-img" onerror="this.alt='Veknova Logo'; this.src='https://placehold.co/150x50/000000/FFFFFF?text=Veknova';">
+                </a>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="Projects.html">Projects</a></li>
+                        <li><a href="ourteam.html">Our Team</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-nav-toggle" aria-controls="nav-list" aria-expanded="false">
+                    <span class="sr-only">Menu</span>
+                    <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <section class="section section-hero">
+                <div class="container">
+                    <h1>Crafting Digital Excellence</h1>
+                    <p>Pioneering next-generation technology, we transform ambitious concepts into robust and impactful real-world solutions.</p>
+                    <a href="Projects.html" class="btn btn-primary">Discover Our Projects</a>
+                </div>
+            </section>
+
+            <section class="section section-features">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>What We Deliver</h2>
+                        <p>Our core focus is on quality, performance, and user-centric design.</p>
                     </div>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <h3>Drone Based Garbage Detection</h3>
+                            <p>An ongoing project to develop an AI-powered drone system that autonomously identifies and maps garbage accumulation in urban and rural areas.</p>
+                        </div>
 
                     
-                    <div class="feature-card">
-                        <h3>Harmful Gas Detection in Drainage</h3>
-                        <p>This ongoing initiative involves creating a sensor network to monitor and detect toxic gases in drainage systems, ensuring worker safety.</p>
+                        <div class="feature-card">
+                            <h3>Traveler's Safety & Monitoring</h3>
+                            <p>We are building an integrated platform using Emergency SOS Alert Features and  mobile technology to provide real-time safety alerts and emergency assistance for travelers.</p>
+                        </div>
+
+                    
+                        <div class="feature-card">
+                            <h3>Harmful Gas Detection in Drainage</h3>
+                            <p>This new initiative involves creating a sensor network to monitor and detect toxic gases in drainage systems, ensuring worker safety.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            
+            <section class="section section-cta">
+                <div class="container">
+                    <h2 class="section-title">Ready to build your digital future?</h2>
+                    <p>Let's have a conversation about your project and how we can help you achieve your goals. Contact us today to get started.</p>
+                    <a href="contact.html" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </section>
+        </main>
+
+        <footer class="bg-gray-900 text-gray-300 pt-16 pb-8">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                    
+                    <div>
+                        <a href="index.html" class="logo">
+                            <img src="images/veknovalogo1.png" alt="Veknova Logo" class="logo-img h-10" onerror="this.alt='Veknova Logo'; this.src='https://placehold.co/150x40/FFFFFF/0A0A0A?text=Veknova';">
+                        </a>
+                        
+                        <p class="mt-6 text-gray-400">Have a project in mind? Let's build something amazing together.</p>
+                        <a href="contact.html" class="mt-2 text-white font-semibold inline-block hover:text-blue-400 transition-colors">Get in Touch!</a>
+                    </div>
+
+                    <div class="lg:col-span-2">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            
+                            <div>
+                                <h4 class="text-xl font-semibold text-white mb-4">Contact Us</h4>
+                                <div class="flex items-start space-x-3 mb-4">
+                                    <svg class="w-6 h-6 text-blue-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    <span class="text-gray-400">VEKNOVA PRIVATE LIMITED
+ MADANAPALLE INSTITUTE OF, TECHNOLOGA AND SCIENCE, Kurabalakota, Madanapalle, Chittoor- 517350, Andhra
+ Pradesh</span>
+                                </div>
+                                <div class="flex items-center space-x-3 mb-4">
+                                    <svg class="w-6 h-6 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                    <span class="text-gray-400">+91 8328057598</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <svg class="w-6 h-6 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                    <span class="text-gray-400">veknovapvtltd@gmail.com</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h4 class="text-xl font-semibold text-white mb-4">Social Media</h4>
+                                <div class="flex space-x-5">
+                                    <a href="https://www.linkedin.com/company/veknova-private-limited/" aria-label="LinkedIn Profile" class="text-gray-400 hover:text-white transition-colors">
+                                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                                    </a>
+                                    <a href="https://www.instagram.com/veknova_pvt_ltd?igsh=YzRqdm1qZWJhaDBm" aria-label="Instagram Profile" class="text-gray-400 hover:text-white transition-colors">
+                                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.646-.07-4.85s.012-3.584.07-4.85c.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.059 1.689.073 4.948.073s3.667-.014 4.947-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.947s-.014-3.667-.072-4.947c-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+                                    </a>
+                                    
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
+
+                <hr class="border-gray-700 my-8">
+                <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+                    <nav class="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2 mb-4 md:mb-0">
+                        <a href="about.html" class="hover:text-white transition-colors">About Us</a>
+                        <a href="contact.html" class="hover:text-white transition-colors">Contact Us</a>
+                        <a href="Projects.html" class="hover:text-white transition-colors">Projects</a>
+                        
+                    </nav>
+
+                </div>
             </div>
-        </section>
+        </footer>
 
-        
-        <section class="section section-cta">
-            <div class="container">
-                <h2 class="section-title">Ready to build your digital future?</h2>
-                <p>Let's have a conversation about your project and how we can help you achieve your goals. Contact us today to get started.</p>
-                <a href="contact.html" class="btn btn-secondary">Get In Touch</a>
-            </div>
-        </section>
-    </main>
+    </div> <script>
+        window.addEventListener('load', () => {
+            const overlay = document.getElementById('launch-overlay');
+            const mainContent = document.getElementById('main-content');
+            
+            const step1 = document.getElementById('step-1-prompt');
+            const step2 = document.getElementById('step-2-countdown');
+            const step3 = document.getElementById('step-3-animation');
+            
+            const launchButton = document.getElementById('launch-button');
+            const countdownTimer = document.getElementById('countdown-timer');
+            
+            const scissors = document.getElementById('scissors');
+            const ribbonLeft = document.getElementById('ribbon-left');
+            const ribbonRight = document.getElementById('ribbon-right');
 
-    <!-- Footer Section (Consistent across all pages) -->
-    <footer class="footer">
-        <div class="container">
-            <p>Veknova Pvt. Ltd</p>
-        </div>
-    </footer>
+            if (!overlay) {
+                // Failsafe in case elements aren't found
+                console.error("Launch sequence elements not found.");
+                if(mainContent) mainContent.classList.remove('opacity-0');
+                return;
+            }
+            
+            launchButton.addEventListener('click', () => {
+                // 1. Hide step 1, show step 2
+                step1.classList.add('hidden');
+                step2.classList.remove('hidden');
+                
+                let count = 10;
+                countdownTimer.textContent = count;
+                
+                const interval = setInterval(() => {
+                    count--;
+                    countdownTimer.textContent = count;
+                    
+                    if (count <= 0) {
+                        clearInterval(interval);
+                        
+                        // 2. Hide step 2, show step 3 (animation)
+                        step2.classList.add('hidden');
+                        step3.classList.remove('hidden');
+                        
+                        // 3. Start animation sequence
+                        
+                        // Scissors move up and appear
+                        setTimeout(() => {
+                            scissors.style.transform = 'translateY(0) rotate(90deg) scale(1.2)';
+                            scissors.style.opacity = '1';
+                        }, 100);
 
-    <!-- Link to the shared JavaScript file -->
+                        // Scissors "open"
+                        setTimeout(() => {
+                            scissors.style.transform = 'translateY(0) rotate(70deg) scale(1.3)';
+                        }, 600); // 500ms after appearing
+
+                        // Scissors "cut" (close)
+                        setTimeout(() => {
+                            scissors.style.transform = 'translateY(0) rotate(100deg) scale(1.2)';
+                        }, 900); // 300ms to open
+
+                        // Ribbon splits and scissors hide
+                        setTimeout(() => {
+                            ribbonLeft.style.transform = 'translateX(-100%) rotate(-30deg)';
+                            ribbonRight.style.transform = 'translateX(100%) rotate(30deg)';
+                            ribbonLeft.style.opacity = '0';
+                            ribbonRight.style.opacity = '0';
+                            scissors.style.opacity = '0';
+                            scissors.style.transitionDuration = '300ms'; // Faster hide
+                        }, 1200); // 300ms after "cut"
+
+                        // 4. Hide overlay, show content
+                        setTimeout(() => {
+                            overlay.classList.add('opacity-0');
+                            mainContent.classList.remove('opacity-0');
+                            
+                            // Remove overlay from DOM after it fades
+                            setTimeout(() => {
+                                if (overlay) overlay.remove();
+                            }, 1000); 
+                        }, 2200); // 1s after ribbon split
+                    }
+                }, 1000); // 1 second interval
+            });
+        });
+    </script>
+
     <script src="js/main.js"></script>
 </body>
 </html>
-

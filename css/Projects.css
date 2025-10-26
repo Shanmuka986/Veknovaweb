@@ -1,24 +1,39 @@
-/* * STYLE GUIDE:
- * 1. Globals & Variables  - Base styles and color palette.
- * 2. Layout & Container   - Core page structure.
- * 3. Header & Navigation  - Top bar and menu (Mobile First).
- * 4. Page-Specific Styles - Unique content sections for the Projects page.
- * 5. Footer               - Bottom section.
- * 6. Utility Classes      - Reusable helpers (e.g., buttons).
- * 7. Media Queries        - Responsive adjustments for larger screens.
+/* * STYLE GUIDE (Projects Page):
+ * 1. Globals & Variables
+ * 2. Keyframe Animations
+ * 3. Layout & Container
+ * 4. Header & Navigation (Shared)
+ * 5. Page-Specific Sections (Header, Project Grid)
+ * 6. Footer (Shared)
+ * 7. Utility Classes (Buttons)
+ * 8. Media Queries (Desktop)
 */
 
 /* 1. Globals & Variables */
 :root {
-    --primary-color: #0a4d8c;
-    --secondary-color: #f4f7fa;
-    --accent-color: #007bff;
-    --text-dark: #212529;
-    --text-light: #ffffff;
-    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --primary-color: #08d9d6;     /* Bright Teal */
+    --accent-color: #00ffab;      /* Cyber Green */
+    --accent-color-2: #ff00c1;    /* Cyber Magenta */
+    
+    /* Dark Theme Palette */
+    --bg-dark-primary: #1212c1;   /* Main background (very dark blue/purple) */
+    --bg-dark-secondary: #1f1f3a; /* Card background (lighter dark) */
+    --text-headings: #ffffff;
+    --text-primary: #f0f0f5;      /* Main light text */
+    --text-secondary: #a0a0c0;     /* Lighter text for paragraphs */
+    --border-color: #3a3a5a;
+    
+    --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.2);
+    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.3);
+    
+    /* Updated font for a more modern feel */
+    --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --container-width: 1140px;
-    --border-radius: 8px;
+    --border-radius: 10px; /* Slightly more rounded */
 }
+
+/* Import Poppins Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap');
 
 *, *::before, *::after {
     box-sizing: border-box;
@@ -26,42 +41,80 @@
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: var(--font-family);
     line-height: 1.7;
-    color: var(--text-dark);
-    background-color: var(--text-light);
+    color: var(--text-primary);
+    background-color: var(--bg-dark-primary);
+    overflow-x: hidden; /* Prevent horizontal scroll from animations */
 }
 
 h1, h2, h3 {
     line-height: 1.2;
     margin-bottom: 0.75rem;
+    font-weight: 700;
+    color: var(--text-headings);
 }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-p { margin-bottom: 1rem; }
+h1 { font-size: 2.8rem; }
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.5rem; } 
+p { margin-bottom: 1rem; color: var(--text-secondary); }
 a { color: var(--accent-color); text-decoration: none; }
+img { max-width: 100%; display: block; }
 
-/* 2. Layout & Container */
+/* 2. Keyframe Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animated Gradient Background */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Breathing Glow Animation */
+@keyframes breathingGlow {
+    0% { box-shadow: 0 4px 15px rgba(0, 255, 171, 0.4); }
+    50% { box-shadow: 0 7px 30px rgba(0, 255, 171, 0.7); }
+    100% { box-shadow: 0 4px 15px rgba(0, 255, 171, 0.4); }
+}
+
+@keyframes breathingGlowSecondary {
+    0% { box-shadow: 0 4px 15px rgba(8, 217, 214, 0.4); }
+    50% { box-shadow: 0 7px 30px rgba(8, 217, 214, 0.7); }
+    100% { box-shadow: 0 4px 15px rgba(8, 217, 214, 0.4); }
+}
+
+/* 3. Layout & Container */
 .container {
     max-width: var(--container-width);
     margin: 0 auto;
     padding: 0 1.5rem;
 }
 
-.section {
-    padding: 5rem 0;
-}
-
-/* 3. Header & Navigation (Mobile First) - STANDARDIZED */
+/* 4. Header & Navigation (Shared) */
 .header {
-    background: var(--text-light);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    background: var(--bg-dark-secondary);
+    box-shadow: var(--shadow-light);
     padding: 1rem 0;
     position: sticky;
     top: 0;
     z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .header .container {
@@ -73,42 +126,67 @@ a { color: var(--accent-color); text-decoration: none; }
 .logo-img {
     height: 45px;
     width: auto;
+    transition: filter 0.3s ease;
+}
+.logo-img:hover {
+    filter: drop-shadow(0 0 8px var(--primary-color));
 }
 
 .nav-list {
     list-style: none;
-    display: none;
+    display: none; /* Hidden on mobile */
     flex-direction: column;
     position: absolute;
-    top: 100%;
+    top: 73px; /* Height of header */
     left: 0;
     width: 100%;
-    background: var(--text-light);
-    border-top: 1px solid #ddd;
-    padding: 1rem 0;
+    background: var(--bg-dark-secondary);
+    box-shadow: var(--shadow-medium);
+    border-top: 1px solid var(--border-color);
 }
 
 .nav-list.active {
-    display: flex;
+    display: flex; /* Shown when toggled by JS */
 }
 
 .nav-list a {
     display: block;
-    padding: 0.75rem 1.5rem;
+    padding: 1rem 1.5rem;
     text-decoration: none;
-    color: var(--text-dark);
+    color: var(--text-primary);
     font-weight: 500;
     text-align: center;
-    transition: color 0.2s ease-in-out;
+    position: relative;
+    transition: color 0.3s ease;
 }
 
-.nav-list a.active, .nav-list a:hover {
+.nav-list a::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 80%;
+    height: 2px;
+    background-color: var(--accent-color-2); /* Use magenta */
+    transition: transform 0.3s ease;
+    transform: scaleX(0); /* Animate from center */
+    transform-origin: center;
+}
+
+.nav-list a.active, 
+.nav-list a:hover {
     color: var(--primary-color);
-    font-weight: 700;
+}
+
+.nav-list a.active::after, 
+.nav-list a:hover::after {
+    transform: scaleX(1); /* Animate from center */
 }
 
 .mobile-nav-toggle {
-    display: block;
+    display: block; /* Shown on mobile */
     background: transparent;
     border: 0;
     cursor: pointer;
@@ -118,60 +196,175 @@ a { color: var(--accent-color); text-decoration: none; }
 .hamburger-icon {
     width: 24px;
     height: 24px;
-    stroke: var(--text-dark);
+    stroke: var(--text-primary);
 }
 
-/* 4. Page-Specific Styles (Projects/Services) */
+/* 5. Page-Specific Sections */
+.section {
+    padding: 5rem 0;
+    animation: fadeInUp 1s ease-out forwards;
+    opacity: 0; /* Start hidden for animation */
+}
+
+/* Page header (About Us, Contact, etc.) */
 .section-page-header {
-    background-color: var(--secondary-color);
+    background-image: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 50%, var(--accent-color-2) 100%);
+    background-size: 200% 200%; /* For animation */
+    animation: gradientShift 15s ease infinite alternate, fadeInUp 1s ease-out forwards;
+    color: var(--text-headings);
     text-align: center;
-    padding: 4rem 0;
+    padding: 5rem 0;
+    animation-delay: 0.1s;
 }
 
+.section-page-header h1 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    text-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+.section-page-header p {
+    font-size: 1.2rem;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--text-primary);
+    opacity: 0.9;
+}
+
+/* Main content section for Projects page */
 .section-features {
-    background-color: var(--secondary-color);
+    animation-delay: 0.2s; /* Second section animates in */
 }
 
 .features-grid {
     display: grid;
     gap: 2rem;
-    grid-template-columns: 1fr; /* Default to 1 column for mobile */
+    grid-template-columns: 1fr; /* 1 column by default */
 }
 
 .feature-card {
-    background: var(--text-light);
-    border: 1px solid #e0e0e0;
+    background: var(--bg-dark-secondary);
+    border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
-    padding: 2rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: var(--shadow-light);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    height: 100%; /* Make cards in a row equal height */
+}
+
+.feature-card:hover {
+    transform: translateY(-5px); /* Lift up */
+    border-color: var(--primary-color);
+    box-shadow: 0 0 25px rgba(8, 217, 214, 0.5); /* Glowing hover */
 }
 
 .feature-card h3 {
-    color: var(--primary-color);
+    color: var(--accent-color);
     margin-bottom: 1rem;
 }
 
-/* 5. Footer */
+/* NEW: Styles for the list inside the tailoring project card */
+.feature-card ul {
+    list-style: none; /* Remove default bullets */
+    text-align: left;
+    margin-top: 1.5rem;
+    padding: 0; /* Remove default padding */
+}
+
+.feature-card li {
+    color: var(--text-secondary);
+    position: relative;
+    padding-left: 1.75rem; /* Space for the icon */
+    margin-bottom: 0.75rem; /* More spacing */
+    line-height: 1.6;
+}
+
+.feature-card li::before {
+    content: '✓'; /* Checkmark icon */
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent-color); /* Cyber Green */
+    font-weight: 700;
+}
+
+
+/* 6. Footer (Shared) */
 .footer {
-    background: var(--text-dark);
-    color: var(--text-light);
+    background: #0a0a14; /* Even darker for footer */
+    color: var(--text-secondary);
     text-align: center;
     padding: 3rem 0;
+    margin-top: 3rem;
+    border-top: 1px solid var(--border-color);
 }
 
 .footer p {
     margin: 0;
+    color: var(--text-secondary);
+    opacity: 0.8;
 }
 
-/* 6. Utility Classes */
+/* 7. Utility Classes (Buttons) */
+.btn {
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    text-decoration: none;
+    border-radius: 50px; /* Pill shape */
+    font-weight: 700;
+    transition: all 0.3s ease; /* Animate all properties */
+    border: 2px solid transparent; /* Base border */
+    cursor: pointer;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background-image: linear-gradient(45deg, var(--accent-color) 0%, var(--accent-color-2) 100%);
+    color: #000;
+    animation: breathingGlow 3s ease-in-out infinite;
+}
+.btn-primary:hover {
+    transform: translateY(-3px) scale(1.05);
+    animation-play-state: paused;
+    box-shadow: 0 7px 30px rgba(0, 255, 171, 0.7);
+}
+
+.btn-secondary {
+    background: var(--primary-color);
+    color: #000;
+    animation: breathingGlowSecondary 3s ease-in-out infinite;
+}
+.btn-secondary:hover {
+    transform: translateY(-3px) scale(1.05);
+    animation-play-state: paused;
+    box-shadow: 0 7px 30px rgba(8, 217, 214, 0.7);
+}
+
+/* Outline button (if needed on this page) */
+.btn-outline {
+    background: transparent;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+.btn-outline:hover {
+    background: var(--primary-color);
+    color: #000; /* Black text on hover */
+    box-shadow: 0 0 20px rgba(8, 217, 214, 0.7);
+    transform: translateY(-3px);
+}
+
 .sr-only { 
-    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; 
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -i1px; 
     overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; 
 }
 
-/* 7. Media Queries (Desktop Adjustments) */
+/* 8. Media Queries (Desktop) */
 @media (min-width: 768px) {
-    h1 { font-size: 3.2rem; }
+    h1 { font-size: 3.5rem; }
+    .section-page-header h1 { font-size: 4.5rem; }
 
     .mobile-nav-toggle {
         display: none;
@@ -183,6 +376,7 @@ a { color: var(--accent-color); text-decoration: none; }
         position: static;
         width: auto;
         background: none;
+        box-shadow: none;
         border: none;
         padding: 0;
     }
@@ -190,14 +384,15 @@ a { color: var(--accent-color); text-decoration: none; }
     .nav-list a {
         padding: 0 1.25rem;
     }
-
-    .features-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
+    
+    .nav-list a:hover::after,
+    .nav-list a.active::after {
+        width: 80%;
+        bottom: -5px;
     }
-}
 
-@media (min-width: 1024px) {
+    /* Make the features grid 3 columns on desktop */
     .features-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 columns for desktops */
+        grid-template-columns: repeat(3, 1fr);
     }
 }

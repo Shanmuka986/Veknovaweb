@@ -1,0 +1,147 @@
+/* --- Keyframe Animations --- */
+
+/* Full-page background animated gradient - Ethereal & Smooth */
+@keyframes fullPageGradient {
+    0% { background: linear-gradient(135deg, #1a2a3a, #2a1a3a); } /* Deep muted blue to deep muted purple */
+    25% { background: linear-gradient(135deg, #2a1a3a, #3a1a2a); }
+    50% { background: linear-gradient(135deg, #3a1a2a, #1a2a3a); }
+    75% { background: linear-gradient(135deg, #1a2a3a, #2a1a3a); }
+    100% { background: linear-gradient(135deg, #2a1a3a, #3a1a2a); }
+}
+
+/* Pulse and color shift animation for the countdown timer - Soft & Elegant */
+@keyframes pulseAndColor {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+        color: #d8e6ff; /* Soft off-white blue */
+        text-shadow: 0 0 12px rgba(216, 230, 255, 0.6), 0 0 20px rgba(216, 230, 255, 0.4);
+    }
+    50% {
+        transform: scale(1.08); /* Less aggressive pulse */
+        opacity: 0.95;
+        color: #ffeadb; /* Soft peach */
+        text-shadow: 0 0 15px rgba(255, 234, 219, 0.7), 0 0 25px rgba(255, 234, 219, 0.5);
+    }
+}
+
+/* Glowing pulse for the launch button - Gentle & Inviting */
+@keyframes buttonGlow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(173, 216, 230, 0.7), 0 0 20px rgba(173, 216, 230, 0.4); /* Light blue glow */
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(255, 218, 185, 0.8), 0 0 25px rgba(255, 218, 185, 0.5); /* Peach glow */
+    }
+}
+
+
+/* --- Element Styles --- */
+
+/* Apply full-page gradient animation to the main overlay */
+#launch-overlay {
+    background: linear-gradient(135deg, #1a2a3a, #2a1a3a); /* Initial dark muted gradient */
+    animation: fullPageGradient 20s ease-in-out infinite; /* Slower, more serene animation */
+    backdrop-filter: blur(8px); /* Slightly more prominent blur for depth */
+}
+
+/* Full page modal styling - Centered content, transparent background */
+#launch-modal {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent; /* Keep background transparent for overlay gradient */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #e0e0e0; /* Default text color for general content */
+}
+
+/* Initial Prompt (Launch Website text) */
+#step-1-prompt h2 {
+    font-size: 4rem; /* Larger and more prominent */
+    color: #ffffff; /* Pure white for strong contrast */
+    text-shadow: 0 0 18px rgba(255, 255, 255, 0.4), 0 0 30px rgba(255, 255, 255, 0.2); /* Enhanced glow */
+    margin-bottom: 2.5rem; /* Increased spacing */
+    letter-spacing: 0.12em; /* Slightly wider letter spacing */
+    font-weight: 600; /* Medium bold */
+}
+
+/* Countdown Timer Styling */
+#countdown-timer {
+    animation: pulseAndColor 1.5s ease-in-out infinite; /* Slower, more gentle pulse */
+    font-size: 12rem; /* Even larger and more impactful */
+    font-weight: 900;
+    line-height: 1;
+}
+
+/* Launch Button Styling */
+#launch-button {
+    animation: buttonGlow 2.5s ease-in-out infinite; /* New, softer glow animation */
+    box-shadow: 0 0 10px rgba(173, 216, 230, 0.7), 0 0 20px rgba(173, 216, 230, 0.4); /* Base glow */
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 1.4rem 3.5rem; /* Larger button for more presence */
+    font-size: 2rem; /* Larger text */
+    background: linear-gradient(45deg, #87ceeb, #add8e6); /* Sky blue gradient */
+    color: #1a2a3a; /* Dark text for high contrast */
+    border: none;
+    cursor: pointer;
+    border-radius: 1rem; /* More rounded button */
+    transition: all 0.4s ease-in-out; /* Smoother transition */
+}
+
+#launch-button:hover {
+    transform: scale(1.08); /* More pronounced hover scale */
+    background: linear-gradient(45deg, #4682b4, #87ceeb); /* Darker blue on hover */
+    box-shadow: 0 0 15px rgba(255, 218, 185, 0.9), 0 0 30px rgba(255, 218, 185, 0.6); /* Different glow on hover */
+}
+
+/* --- Ribbon & Scissors Animation --- */
+
+/* Scissors Styling - Metallic with subtle sheen */
+#scissors {
+    color: #c0c0c0; /* Silver */
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.6), 0 0 15px rgba(255, 255, 255, 0.4);
+    font-size: 9rem; /* Slightly larger scissors */
+    transition-property: transform, opacity;
+    transition-duration: 700ms; /* Slightly longer, smoother cut */
+    transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1); /* Smoother animation curve */
+}
+
+/* Ribbon Pieces Styling - Luxurious Satin */
+#ribbon-left,
+#ribbon-right {
+    background: linear-gradient(90deg, #b0c4de, #e6e6fa, #b0c4de); /* Soft blue-gray to lavender gradient */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6); /* More prominent, softer shadow */
+    height: 4rem; /* Even thicker ribbon */
+    width: 65%; /* Wider ribbon */
+    max-width: 450px; /* Slightly increased max width */
+    
+    transition-property: transform, opacity;
+    transition-duration: 1500ms; /* Slower, more elegant ribbon fall */
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth ease-out for a natural fall */
+    border-radius: 8px; /* Softer rounded edges */
+}
+
+/* Adjust the animation container for larger ribbon/scissors */
+#step-3-animation {
+    width: 85vw; /* Occupy more width */
+    max-width: 650px;
+    height: 220px; /* Taller */
+}
+
+/* Adjust the parent of ribbon pieces to match new ribbon height */
+#step-3-animation > div:first-of-type {
+    width: 100%;
+    height: 4.5rem; /* Slightly taller to contain the 4rem ribbon comfortably */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
