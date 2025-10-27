@@ -11,17 +11,18 @@
 
 /* 1. Globals & Variables */
 :root {
-    --primary-color: #08d9d6;     /* Bright Teal */
-    --accent-color: #00ffab;      /* Cyber Green */
-    --accent-color-2: #ff00c1;    /* Cyber Magenta */
+    /* NEW: "Solar Flare" Palette */
+    --primary-color: #FEEA00;      /* Cyber Yellow */
+    --accent-color: #FF3131;        /* Fiery Red */
+    --accent-color-2: #7DF9FF;      /* Ice Blue */
     
-    /* Dark Theme Palette */
-    --bg-dark-primary: #1212c1;   /* Main background (very dark blue/purple) */
-    --bg-dark-secondary: #1f1f3a; /* Card background (lighter dark) */
+    /* KEEPING: "Deep Ocean" Palette (Deep Blue) */
+    --bg-dark-primary: #1A2A45;    /* Main background (Deep Space Blue) */
+    --bg-dark-secondary: #2A3A55;  /* Card background (Lighter Blue) */
     --text-headings: #ffffff;
     --text-primary: #f0f0f5;      /* Main light text */
     --text-secondary: #a0a0c0;     /* Lighter text for paragraphs */
-    --border-color: #3a3a5a;
+    --border-color: #40506A;      /* Muted Blue Border */
     
     --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.2);
     --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.3);
@@ -88,15 +89,15 @@ img { max-width: 100%; display: block; }
 
 /* Breathing Glow Animation */
 @keyframes breathingGlow {
-    0% { box-shadow: 0 4px 15px rgba(0, 255, 171, 0.4); }
-    50% { box-shadow: 0 7px 30px rgba(0, 255, 171, 0.7); }
-    100% { box-shadow: 0 4px 15px rgba(0, 255, 171, 0.4); }
+    0% { box-shadow: 0 4px 15px rgba(255, 49, 49, 0.4); } /* Updated to --accent-color (Red) */
+    50% { box-shadow: 0 7px 30px rgba(255, 49, 49, 0.7); }
+    100% { box-shadow: 0 4px 15px rgba(255, 49, 49, 0.4); }
 }
 
 @keyframes breathingGlowSecondary {
-    0% { box-shadow: 0 4px 15px rgba(8, 217, 214, 0.4); }
-    50% { box-shadow: 0 7px 30px rgba(8, 217, 214, 0.7); }
-    100% { box-shadow: 0 4px 15px rgba(8, 217, 214, 0.4); }
+    0% { box-shadow: 0 4px 15px rgba(254, 234, 0, 0.4); } /* Updated to --primary-color (Yellow) */
+    50% { box-shadow: 0 7px 30px rgba(254, 234, 0, 0.7); }
+    100% { box-shadow: 0 4px 15px rgba(254, 234, 0, 0.4); }
 }
 
 /* 3. Layout & Container */
@@ -169,7 +170,7 @@ img { max-width: 100%; display: block; }
     margin: auto;
     width: 80%;
     height: 2px;
-    background-color: var(--accent-color-2); /* Use magenta */
+    background-color: var(--accent-color-2); /* Use Ice Blue */
     transition: transform 0.3s ease;
     transform: scaleX(0); /* Animate from center */
     transform-origin: center;
@@ -250,19 +251,56 @@ img { max-width: 100%; display: block; }
     padding: 2.5rem;
     text-align: center;
     box-shadow: var(--shadow-light);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
     height: 100%; /* Make cards in a row equal height */
+    overflow: hidden; /* Important for the image zoom effect */
+    position: relative; /* For pseudo-elements if needed */
 }
 
 .feature-card:hover {
-    transform: translateY(-5px); /* Lift up */
+    transform: translateY(-10px) scale(1.02); /* Lift up and slightly enlarge */
     border-color: var(--primary-color);
-    box-shadow: 0 0 25px rgba(8, 217, 214, 0.5); /* Glowing hover */
+    box-shadow: 0 10px 40px rgba(254, 234, 0, 0.5); /* Glowing hover (Yellow) */
 }
 
 .feature-card h3 {
     color: var(--accent-color);
     margin-bottom: 1rem;
+    transition: color 0.3s ease;
+}
+
+.feature-card:hover h3 {
+    color: var(--primary-color); /* Change heading color on hover */
+}
+
+/* NEW: Styles for project images */
+.feature-card a:first-child { /* Target the link wrapping the image */
+    display: block;
+    margin-bottom: 1.5rem;
+    border-radius: var(--border-radius);
+    overflow: hidden; /* To clip the image corners */
+    box-shadow: var(--shadow-light);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    border: 2px solid transparent; /* Start with a transparent border */
+}
+
+.feature-card:hover a:first-child {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 25px rgba(255, 49, 49, 0.5); /* Glow with accent color (Red) */
+}
+
+.project-img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.4s ease;
+    filter: saturate(1); /* Normal saturation */
+}
+
+.feature-card:hover .project-img {
+    transform: scale(1.1); /* Zoom in more on hover */
+    filter: saturate(1.5); /* Make colors pop on hover */
 }
 
 /* NEW: Styles for the list inside the tailoring project card */
@@ -286,7 +324,7 @@ img { max-width: 100%; display: block; }
     position: absolute;
     left: 0;
     top: 0;
-    color: var(--accent-color); /* Cyber Green */
+    color: var(--accent-color); /* Fiery Red */
     font-weight: 700;
 }
 
@@ -329,7 +367,7 @@ img { max-width: 100%; display: block; }
 .btn-primary:hover {
     transform: translateY(-3px) scale(1.05);
     animation-play-state: paused;
-    box-shadow: 0 7px 30px rgba(0, 255, 171, 0.7);
+    box-shadow: 0 7px 30px rgba(255, 49, 49, 0.7); /* Red Glow */
 }
 
 .btn-secondary {
@@ -340,7 +378,7 @@ img { max-width: 100%; display: block; }
 .btn-secondary:hover {
     transform: translateY(-3px) scale(1.05);
     animation-play-state: paused;
-    box-shadow: 0 7px 30px rgba(8, 217, 214, 0.7);
+    box-shadow: 0 7px 30px rgba(254, 234, 0, 0.7); /* Yellow Glow */
 }
 
 /* Outline button (if needed on this page) */
@@ -352,7 +390,7 @@ img { max-width: 100%; display: block; }
 .btn-outline:hover {
     background: var(--primary-color);
     color: #000; /* Black text on hover */
-    box-shadow: 0 0 20px rgba(8, 217, 214, 0.7);
+    box-shadow: 0 0 20px rgba(254, 234, 0, 0.7); /* Yellow Glow */
     transform: translateY(-3px);
 }
 

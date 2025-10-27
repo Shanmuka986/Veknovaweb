@@ -11,17 +11,18 @@
 
 /* 1. Globals & Variables */
 :root {
-    --primary-color: #08d9d6;     /* Bright Teal */
-    --accent-color: #00ffab;      /* Cyber Green */
-    --accent-color-2: #ff00c1;    /* Cyber Magenta */
+    /* NEW: "Deep Jewel" Palette for animations */
+    --primary-color: #DC143C;      /* Crimson Red */
+    --accent-color: #08457E;        /* Sapphire Blue */
+    --accent-color-2: #6A0DAD;      /* Amethyst Purple */
     
-    /* Dark Theme Palette */
-    --bg-dark-primary: #1212c1;   /* Main background (very dark blue/purple) */
-    --bg-dark-secondary: #1f1f3a; /* Card background (lighter dark) */
+    /* KEEPING: "Deep Ocean" Palette for background */
+    --bg-dark-primary: #1A2A45;    /* Main background (Deep Space Blue) */
+    --bg-dark-secondary: #2A3A55;  /* Card background (Lighter Blue) */
     --text-headings: #ffffff;
     --text-primary: #f0f0f5;      /* Main light text */
     --text-secondary: #a0a0c0;     /* Lighter text for paragraphs */
-    --border-color: #3a3a5a;
+    --border-color: #40506A;      /* Muted Blue Border */
     
     --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.2);
     --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.3);
@@ -156,7 +157,7 @@ img { max-width: 100%; display: block; }
     margin: auto;
     width: 80%;
     height: 2px;
-    background-color: var(--accent-color-2); /* Use magenta */
+    background-color: var(--accent-color-2); /* Use Amethyst Purple */
     transition: transform 0.3s ease;
     transform: scaleX(0); /* Animate from center */
     transform-origin: center;
@@ -241,9 +242,9 @@ img { max-width: 100%; display: block; }
 }
 
 .team-member-card:hover {
-    transform: translateY(-5px); /* Lift up */
-    border-color: var(--accent-color-2); /* Magenta glow */
-    box-shadow: 0 0 25px rgba(255, 0, 193, 0.5); /* Glowing hover */
+    transform: translateY(-10px) rotate(2deg); /* Lift up and tilt */
+    border-color: var(--accent-color); /* Sapphire Blue border */
+    box-shadow: 0 0 25px rgba(8, 69, 126, 0.6); /* Glowing hover with Sapphire Blue */
 }
 
 .team-member-photo {
@@ -253,25 +254,42 @@ img { max-width: 100%; display: block; }
     object-fit: cover;
     margin: 0 auto 1.5rem auto;
     border: 4px solid var(--border-color);
-    transition: border-color 0.3s ease;
+    box-shadow: 0 0 0 rgba(0,0,0,0); /* Initial no shadow */
+    transition: border-color 0.3s ease, transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease; /* Added box-shadow */
 }
 
 .team-member-card:hover .team-member-photo {
-    border-color: var(--accent-color-2); /* Match card glow */
+    border-color: var(--primary-color); /* Crimson Red border */
+    transform: scale(1.1); /* Slightly zoom in photo */
+    filter: brightness(1.1); /* Slightly brighten photo */
+    box-shadow: 0 0 20px rgba(220, 20, 60, 0.7); /* Glow effect on photo */
 }
 
 .team-member-name {
     color: var(--text-headings);
     font-size: 1.4rem;
     margin-bottom: 0.25rem;
+    transition: color 0.3s ease; /* Added transition */
+}
+
+/* Added hover state for name */
+.team-member-card:hover .team-member-name {
+    color: var(--primary-color);
 }
 
 .team-member-title {
-    color: var(--primary-color); /* Teal title */
+    color: var(--primary-color); /* Crimson Red title */
     font-size: 1rem;
     font-weight: 500;
     margin-bottom: 1.5rem;
+    transition: color 0.3s ease; /* Added transition */
 }
+
+/* Added hover state for title */
+.team-member-card:hover .team-member-title {
+    color: var(--accent-color-2); /* Amethyst Purple on hover */
+}
+
 
 .team-member-socials {
     display: flex;
@@ -285,14 +303,15 @@ img { max-width: 100%; display: block; }
 }
 
 .team-member-socials a:hover {
-    color: var(--accent-color); /* Green hover */
-    transform: scale(1.2);
+    color: var(--accent-color-2); /* Amethyst Purple hover */
+    transform: scale(1.4); /* Made icon pop more */
 }
 
 .team-member-socials svg {
     width: 24px;
     height: 24px;
     stroke: currentColor; /* Inherit color from the <a> tag */
+    transition: transform 0.3s ease;
 }
 
 

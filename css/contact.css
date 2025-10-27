@@ -11,20 +11,21 @@
 
 /* 1. Globals & Variables */
 :root {
-    --primary-color: #08d9d6;     /* Bright Teal */
-    --accent-color: #00ffab;      /* Cyber Green */
-    --accent-color-2: #ff00c1;    /* Cyber Magenta */
+    /* NEW: "Refined Glow" Palette for animations (professional, subtle) */
+    --primary-color: #4682B4;      /* Steel Blue */
+    --accent-color: #9EB3C2;        /* Cadet Gray */
+    --accent-color-2: #708090;      /* Slate Gray */
     
-    /* Dark Theme Palette */
-    --bg-dark-primary: #1212c1;   /* Main background (very dark blue/purple) */
-    --bg-dark-secondary: #1f1f3a; /* Card background (lighter dark) */
-    --text-headings: #ffffff;
-    --text-primary: #f0f0f5;      /* Main light text */
-    --text-secondary: #a0a0c0;     /* Lighter text for paragraphs */
-    --border-color: #3a3a5a;
+    /* KEEPING: "Deep Midnight" Background Theme */
+    --bg-dark-primary: #0A0A10;    /* Very deep blue-black for main background */
+    --bg-dark-secondary: #1C1C22;  /* Slightly lighter deep gray for card background */
+    --text-headings: #F0F0F0;      /* Soft white for headings */
+    --text-primary: #D0D0D0;      /* Main light text */
+    --text-secondary: #A0A0A0;     /* Muted light text for paragraphs */
+    --border-color: #383840;      /* Dark gray border */
     
-    --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.2);
-    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.3);
+    --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.3);
+    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.4);
     
     /* Updated font for a more modern feel */
     --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -88,15 +89,15 @@ img { max-width: 100%; display: block; }
 
 /* Breathing Glow Animation */
 @keyframes breathingGlow {
-    0% { box-shadow: 0 4px 15px rgba(0, 255, 171, 0.4); }
-    50% { box-shadow: 0 7px 30px rgba(0, 255, 171, 0.7); }
-    100% { box-shadow: 0 4px 15px rgba(0, 255, 171, 0.4); }
+    0% { box-shadow: 0 4px 15px rgba(158, 179, 194, 0.4); } /* Cadet Gray */
+    50% { box-shadow: 0 7px 30px rgba(158, 179, 194, 0.7); }
+    100% { box-shadow: 0 4px 15px rgba(158, 179, 194, 0.4); }
 }
 
 @keyframes breathingGlowSecondary {
-    0% { box-shadow: 0 4px 15px rgba(8, 217, 214, 0.4); }
-    50% { box-shadow: 0 7px 30px rgba(8, 217, 214, 0.7); }
-    100% { box-shadow: 0 4px 15px rgba(8, 217, 214, 0.4); }
+    0% { box-shadow: 0 4px 15px rgba(70, 130, 180, 0.4); } /* Steel Blue */
+    50% { box-shadow: 0 7px 30px rgba(70, 130, 180, 0.7); }
+    100% { box-shadow: 0 4px 15px rgba(70, 130, 180, 0.4); }
 }
 
 /* 3. Layout & Container */
@@ -169,7 +170,7 @@ img { max-width: 100%; display: block; }
     margin: auto;
     width: 80%;
     height: 2px;
-    background-color: var(--accent-color-2); /* Use magenta */
+    background-color: var(--accent-color-2); /* Use Slate Gray */
     transition: transform 0.3s ease;
     transform: scaleX(0); /* Animate from center */
     transform-origin: center;
@@ -248,7 +249,7 @@ img { max-width: 100%; display: block; }
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-light);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease; /* Longer transition */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -256,9 +257,9 @@ img { max-width: 100%; display: block; }
 }
 
 .contact-card:hover {
-    transform: translateY(-5px); /* Lift up */
-    border-color: var(--primary-color);
-    box-shadow: 0 0 25px rgba(8, 217, 214, 0.5); /* Glowing hover */
+    transform: translateY(-8px) rotateY(3deg); /* Lift up and subtle Y-axis rotation */
+    border-color: var(--accent-color); /* Cadet Gray border */
+    box-shadow: 0 0 30px rgba(158, 179, 194, 0.7); /* Glowing hover with Cadet Gray */
 }
 
 .contact-card-content {
@@ -274,14 +275,27 @@ img { max-width: 100%; display: block; }
 .contact-card-header svg {
     width: 28px;
     height: 28px;
-    stroke: var(--primary-color);
+    stroke: var(--primary-color); /* Steel Blue */
     margin-right: 0.75rem;
     flex-shrink: 0;
+    transition: transform 0.3s ease, stroke 0.3s ease; /* Added transitions for icon */
+}
+
+/* Icon hover animation */
+.contact-card:hover .contact-card-header svg {
+    transform: rotate(5deg) scale(1.1);
+    stroke: var(--accent-color-2); /* Slate Gray on hover */
 }
 
 .contact-card-header h3 {
-    color: var(--accent-color);
+    color: var(--accent-color); /* Cadet Gray */
     margin-bottom: 0; /* Remove margin from h3 inside header */
+    transition: color 0.3s ease; /* Added transition */
+}
+
+/* H3 hover animation */
+.contact-card:hover .contact-card-header h3 {
+    color: var(--primary-color); /* Steel Blue on hover */
 }
 
 .contact-card-content p {
@@ -293,6 +307,12 @@ img { max-width: 100%; display: block; }
     font-weight: 500;
     display: block;
     line-height: 1.5;
+    transition: color 0.3s ease; /* Added transition */
+}
+
+/* Span text hover effect */
+.contact-card:hover .contact-card-content span {
+    color: var(--text-headings); /* Make text brighter on hover */
 }
 
 .contact-card-action {
@@ -302,7 +322,7 @@ img { max-width: 100%; display: block; }
 
 /* 6. Footer (Shared) */
 .footer {
-    background: #0a0a14; /* Even darker for footer */
+    background: #0a0a14; /* Even darker for footer, slightly different from main bg */
     color: var(--text-secondary);
     text-align: center;
     padding: 3rem 0;
@@ -332,37 +352,41 @@ img { max-width: 100%; display: block; }
 
 .btn-primary {
     background-image: linear-gradient(45deg, var(--accent-color) 0%, var(--accent-color-2) 100%);
-    color: #000;
+    color: var(--bg-dark-primary); /* Dark text for contrast against light gradient */
     animation: breathingGlow 3s ease-in-out infinite;
+    box-shadow: var(--shadow-light); /* Ensure initial shadow */
 }
 .btn-primary:hover {
-    transform: translateY(-3px) scale(1.05);
+    transform: translateY(-5px) scale(1.08); /* More pronounced pop */
     animation-play-state: paused;
-    box-shadow: 0 7px 30px rgba(0, 255, 171, 0.7);
+    box-shadow: 0 10px 40px rgba(158, 179, 194, 0.9); /* Stronger glow on hover */
+    color: #000; /* Ensure text is dark on hover */
 }
 
 .btn-secondary {
     background: var(--primary-color);
-    color: #000;
+    color: #fff; /* White text for contrast */
     animation: breathingGlowSecondary 3s ease-in-out infinite;
+    box-shadow: var(--shadow-light); /* Ensure initial shadow */
 }
 .btn-secondary:hover {
-    transform: translateY(-3px) scale(1.05);
+    transform: translateY(-5px) scale(1.08); /* More pronounced pop */
     animation-play-state: paused;
-    box-shadow: 0 7px 30px rgba(8, 217, 214, 0.7);
+    box-shadow: 0 10px 40px rgba(70, 130, 180, 0.9); /* Stronger glow on hover */
+    color: #fff; /* Ensure text is white on hover */
 }
 
 /* New Outline Button */
 .btn-outline {
     background: transparent;
-    border-color: var(--primary-color);
-    color: var(--primary-color);
+    border-color: var(--primary-color); /* Steel Blue */
+    color: var(--primary-color); /* Steel Blue */
 }
 .btn-outline:hover {
-    background: var(--primary-color);
-    color: #000; /* Black text on hover */
-    box-shadow: 0 0 20px rgba(8, 217, 214, 0.7);
-    transform: translateY(-3px);
+    background: var(--primary-color); /* Steel Blue */
+    color: #fff; /* White text on hover for contrast */
+    box-shadow: 0 0 20px rgba(70, 130, 180, 0.7);
+    transform: translateY(-3px) scale(1.05); /* Slightly larger and lift */
 }
 
 .sr-only { 
@@ -401,7 +425,9 @@ img { max-width: 100%; display: block; }
     }
 
     /* Make the contact grid 2 columns on desktop */
-    .contact-grid {
-        grid-template-columns: repeat(2, 1fr);
+    @media (min-width: 992px) {
+        .contact-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
 }

@@ -11,17 +11,18 @@
 
 /* 1. Globals & Variables */
 :root {
-    --primary-color: #08d9d6;     /* Bright Teal */
-    --accent-color: #00ffab;      /* Cyber Green */
-    --accent-color-2: #ff00c1;    /* Cyber Magenta */
+    /* NEW: "Galactic Aurora" Palette for animations */
+    --primary-color: #BF00FF;      /* Electric Purple */
+    --accent-color: #00FFC0;        /* Cosmic Green */
+    --accent-color-2: #FFD700;      /* Celestial Gold */
     
-    /* Dark Theme Palette */
-    --bg-dark-primary: #1212c1;   /* Main background (very dark blue/purple) */
-    --bg-dark-secondary: #1f1f3a; /* Card background (lighter dark) */
+    /* NEW: "Twilight Abyss" Background Theme */
+    --bg-dark-primary: #0A0A1F;    /* Main background (very dark blue) */
+    --bg-dark-secondary: #1F1F35;  /* Card background (slightly lighter dark blue) */
     --text-headings: #ffffff;
     --text-primary: #f0f0f5;      /* Main light text */
     --text-secondary: #a0a0c0;     /* Lighter text for paragraphs */
-    --border-color: #3a3a5a;
+    --border-color: #303050;      /* Muted dark blue border */
     
     --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.2);
     --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.3);
@@ -155,7 +156,7 @@ img { max-width: 100%; display: block; }
     margin: auto;
     width: 80%;
     height: 2px;
-    background-color: var(--accent-color-2); /* Use magenta */
+    background-color: var(--accent-color-2); /* Use Celestial Gold */
     transition: transform 0.3s ease;
     transform: scaleX(0); /* Animate from center */
     transform-origin: center;
@@ -235,20 +236,36 @@ img { max-width: 100%; display: block; }
     border-radius: var(--border-radius);
     padding: 2.5rem;
     box-shadow: var(--shadow-light);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease, background-color 0.4s ease; /* Added background-color for transition */
 }
 
 .about-card:hover {
-    transform: translateY(-5px); /* Lift up */
-    border-color: var(--primary-color);
-    box-shadow: 0 0 25px rgba(8, 217, 214, 0.5); /* Glowing hover */
+    transform: translateY(-8px) scale(1.02); /* NEW: Lift up and slightly enlarge */
+    border-color: var(--primary-color); /* Electric Purple border */
+    box-shadow: 0 0 30px rgba(191, 0, 255, 0.7), inset 0 0 15px rgba(191, 0, 255, 0.3); /* NEW: Glowing hover with inner shadow */
+    background-color: rgba(31, 31, 53, 0.9); /* Slightly lighter background on hover */
 }
 
 .about-card h2 {
-    color: var(--accent-color);
+    color: var(--accent-color); /* Cosmic Green */
     margin-bottom: 1rem;
     font-size: 2rem;
+    transition: color 0.3s ease; /* Added transition */
 }
+
+/* NEW: Added hover state for heading */
+.about-card:hover h2 {
+    color: var(--primary-color); /* Electric Purple on hover */
+}
+
+/* NEW: Added hover state for paragraph text */
+.about-card p {
+    transition: color 0.3s ease;
+}
+.about-card:hover p {
+    color: var(--text-primary); /* Slightly brighter text on hover */
+}
+
 
 /* 6. Footer (Shared) */
 .footer {
