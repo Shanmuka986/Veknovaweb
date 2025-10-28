@@ -145,3 +145,29 @@
     align-items: center;
 }
 
+/* --- Media Queries --- */
+
+@media (max-width: 640px) {
+    #launch-modal {
+        width: 90%;
+        padding: 2rem;
+    }
+
+    #step-1-prompt h2 {
+        font-size: 2rem;
+    }
+
+    #launch-button {
+        font-size: 1.1rem;
+        padding: 0.8rem 1.5rem;
+    }
+
+    #countdown-timer {
+        font-size: 6rem;
+    }
+
+    #step-3-animation {
+        transform: scale(0.8);
+    }
+}
+

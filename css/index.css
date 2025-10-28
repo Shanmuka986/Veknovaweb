@@ -11,10 +11,14 @@
 
 /* 1. Globals & Variables */
 :root {
-    --primary-color: #08d9d6;     /* Bright Teal */
+    --primary-color: #08d9d6;    /* Bright Teal */
     --accent-color: #00ffab;      /* Cyber Green */
     --accent-color-2: #ff00c1;    /* Cyber Magenta */
-    
+
+    /* Darker palette for animations */
+    --primary-color-dark: #6a00f4; /* Deep Space Purple */
+    --accent-color-dark: #006b6b;  /* Dark Rich Teal */
+
     /* Dark Theme Palette */
     --bg-dark-primary: #12121c;   /* Main background (very dark blue/purple) */
     --bg-dark-secondary: #1f1f3a; /* Card background (lighter dark) */
@@ -78,24 +82,24 @@ img { max-width: 100%; display: block; }
     }
 }
 
-/* NEW: Animated Gradient Background */
+/* Animated Gradient Background */
 @keyframes gradientShift {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* NEW: Breathing Glow Animation */
+/* Breathing Glow Animation */
 @keyframes breathingGlow {
-    0% { box-shadow: 0 4px 15px rgba(0, 255, 171, 0.4); }
-    50% { box-shadow: 0 7px 30px rgba(0, 255, 171, 0.7); }
-    100% { box-shadow: 0 4px 15px rgba(0, 255, 171, 0.4); }
+    0% { box-shadow: 0 4px 15px rgba(106, 0, 244, 0.5); }
+    50% { box-shadow: 0 7px 30px rgba(106, 0, 244, 0.8); }
+    100% { box-shadow: 0 4px 15px rgba(106, 0, 244, 0.5); }
 }
 
 @keyframes breathingGlowSecondary {
-    0% { box-shadow: 0 4px 15px rgba(8, 217, 214, 0.4); }
-    50% { box-shadow: 0 7px 30px rgba(8, 217, 214, 0.7); }
-    100% { box-shadow: 0 4px 15px rgba(8, 217, 214, 0.4); }
+    0% { box-shadow: 0 4px 15px rgba(0, 107, 107, 0.5); }
+    50% { box-shadow: 0 7px 30px rgba(0, 107, 107, 0.8); }
+    100% { box-shadow: 0 4px 15px rgba(0, 107, 107, 0.5); }
 }
 
 
@@ -128,7 +132,7 @@ img { max-width: 100%; display: block; }
     width: auto;
     transition: filter 0.3s ease;
 }
-/* NEW: Logo Hover */
+/* Logo Hover */
 .logo-img:hover {
     filter: drop-shadow(0 0 8px var(--primary-color));
 }
@@ -158,7 +162,7 @@ img { max-width: 100%; display: block; }
     font-weight: 500;
     text-align: center;
     position: relative;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .nav-list a::after {
@@ -170,20 +174,21 @@ img { max-width: 100%; display: block; }
     margin: auto;
     width: 80%;
     height: 2px;
-    background-color: var(--accent-color-2); /* NEW: Use magenta */
+    background-color: var(--accent-color-2); /* Use magenta */
     transition: transform 0.3s ease;
-    transform: scaleX(0); /* NEW: Animate from center */
+    transform: scaleX(0); /* Animate from center */
     transform-origin: center;
 }
 
 .nav-list a.active, 
 .nav-list a:hover {
     color: var(--primary-color);
+    transform: translateY(-2px);
 }
 
 .nav-list a.active::after, 
 .nav-list a:hover::after {
-    transform: scaleX(1); /* NEW: Animate from center */
+    transform: scaleX(1); /* Animate from center */
 }
 
 .mobile-nav-toggle {
@@ -214,19 +219,27 @@ img { max-width: 100%; display: block; }
 
 
 .section-hero {
-    /* NEW: 3-Color Animated Gradient */
-    background-image: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 50%, var(--accent-color-2) 100%);
-    background-size: 200% 200%; /* For animation */
-    animation: gradientShift 15s ease infinite alternate, fadeInUp 1s ease-out forwards;
+    /* * MODIFIED: New 4-Color Dark Animated Gradient 
+     * Uses new dark purple and dark teal for a moodier feel.
+    */
+    background-image: linear-gradient(
+        135deg, 
+        var(--bg-dark-secondary),   /* Dark Purple/Blue */
+        var(--primary-color-dark),  /* Deep Space Purple */
+        var(--accent-color-dark),   /* Dark Rich Teal */
+        var(--bg-dark-secondary)    /* Dark Purple/Blue */
+    );
+    background-size: 400% 400%; /* For smoother animation */
+    animation: gradientShift 20s ease infinite, fadeInUp 1s ease-out forwards;
     color: var(--text-headings);
     text-align: center;
-    padding: 6rem 0;
+    padding: 4rem 0; /* Reduced padding from 6rem */
 }
 
 .section-hero h1 {
     font-size: 3.2rem;
     font-weight: 800;
-    /* NEW: Text shadow */
+    /* Text shadow */
     text-shadow: 0 0 15px rgba(0,0,0,0.3);
 }
 .section-hero p {
@@ -267,14 +280,36 @@ img { max-width: 100%; display: block; }
 
 .feature-card:hover {
     transform: translateY(-5px); /* Lift up more */
-    /* NEW: Glowing hover effect */
-    border-color: var(--primary-color);
-    box-shadow: 0 0 25px rgba(8, 217, 214, 0.5);
+    /* Glowing hover effect */
+    border-color: var(--primary-color-dark); /* Use purple for hover */
+    box-shadow: 0 0 25px rgba(106, 0, 244, 0.4);
+}
+
+/* Styles for project images inside cards */
+.project-img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    margin-bottom: 1.5rem; /* Space between image and title */
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+/* Image hover animation */
+.feature-card:hover .project-img {
+    transform: scale(1.03);
+    filter: brightness(1.1);
 }
 
 .feature-card h3 {
     color: var(--accent-color);
     margin-bottom: 1rem;
+    transition: color 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.feature-card:hover h3 {
+    color: var(--primary-color);
+    letter-spacing: 0.5px;
 }
 
 .section-cta {
@@ -284,9 +319,10 @@ img { max-width: 100%; display: block; }
     padding: 4rem;
 }
 
-/* NEW: Gradient text for CTA */
+/* Gradient text for CTA */
+/* MODIFIED: Use new dark palette for gradient text */
 .section-cta .section-title h2 {
-    background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--accent-color-2));
+    background: linear-gradient(90deg, var(--primary-color-dark), var(--accent-color-dark), var(--primary-color));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -300,20 +336,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* 6. Footer */
-.footer {
-    background: #0a0a14; /* Even darker for footer */
-    color: var(--text-secondary);
-    text-align: center;
-    padding: 3rem 0;
-    margin-top: 3rem;
-    border-top: 1px solid var(--border-color);
-}
 
-.footer p {
-    margin: 0;
-    color: var(--text-secondary);
-    opacity: 0.8;
-}
 
 /* 7. Utility Classes */
 .btn {
@@ -330,30 +353,34 @@ img { max-width: 100%; display: block; }
 }
 
 .btn-primary {
-    /* NEW: 3-Color Gradient Button */
-    background-image: linear-gradient(45deg, var(--accent-color) 0%, var(--accent-color-2) 100%);
-    color: #000;
-    /* NEW: Breathing animation */
+    /* * MODIFIED: Gradient updated to match your image.
+     * Fades from Deep Space Purple to Bright Teal.
+    */
+    background-image: linear-gradient(45deg, var(--primary-color-dark) 0%, var(--primary-color) 100%);
+    color: var(--text-headings); /* Light text on dark button */
+    /* Animation now uses dark purple glow */
     animation: breathingGlow 3s ease-in-out infinite;
 }
 
 .btn-primary:hover {
     transform: translateY(-3px) scale(1.05); /* Add scale */
     animation-play-state: paused; /* Pause animation on hover */
-    box-shadow: 0 7px 30px rgba(0, 255, 171, 0.7);
+    /* More intense shadow on hover, matching new dark purple glow */
+    box-shadow: 0 10px 35px rgba(106, 0, 244, 0.8);
 }
 
 .btn-secondary {
-    background: var(--primary-color);
-    color: #000;
-    /* NEW: Breathing animation */
+    background: var(--accent-color-dark); /* Use dark teal */
+    color: var(--text-headings); /* Light text on dark button */
+    /* Animation now uses dark teal glow */
     animation: breathingGlowSecondary 3s ease-in-out infinite;
 }
 
 .btn-secondary:hover {
     transform: translateY(-3px) scale(1.05); /* Add scale */
     animation-play-state: paused; /* Pause animation on hover */
-    box-shadow: 0 7px 30px rgba(8, 217, 214, 0.7);
+    /* More intense shadow on hover */
+    box-shadow: 0 10px 35px rgba(0, 107, 107, 0.8);
 }
 
 .sr-only { 
@@ -395,4 +422,26 @@ img { max-width: 100%; display: block; }
         grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
     }
 }
+/* --- ADD THIS TO YOUR index.css FILE --- */
 
+/* Make hero a positioning context for the particles */
+.section-hero {
+    position: relative;
+    overflow: hidden; /* Prevents any accidental overflow */
+}
+
+/* Position canvas behind content */
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0; /* Sit behind content */
+}
+
+/* Ensure hero content sits on top */
+.section-hero .container {
+    position: relative;
+    z-index: 1; /* Sit on top of particles */
+}
